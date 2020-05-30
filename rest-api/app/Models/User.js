@@ -32,7 +32,16 @@ class User extends Model {
    * @return {Object}
    */
   tokens () {
+
+    /**
+     * Cada usuario tiene muchos tokens y hace relacion a modelos/token (tokens que generamos)
+     */
     return this.hasMany('App/Models/Token')
+  }
+
+  proyectos() {
+    // cada usuario puede tener muchos proyectos
+    return this.hasMany('App/Models/Proyectos')
   }
 }
 

@@ -48,3 +48,8 @@ module.exports = UserController
  * utilizar migration:run, al correr las migraciones adonis detectara que 
  * se quiere usar sqllite 3
  */
+
+ /**
+  * Para crear un nuevo modelo con la migracion para la estructura en la base de datos
+  *     adonis make:model nombre
+  */
