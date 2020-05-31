@@ -41,7 +41,7 @@ class User extends Model {
 
   proyectos() {
     // cada usuario puede tener muchos proyectos
-    return this.hasMany('App/Models/Proyectos')
+    return this.hasMany('App/Models/Proyecto')
   }
 }
 

@@ -52,4 +52,9 @@ module.exports = UserController
  /**
   * Para crear un nuevo modelo con la migracion para la estructura en la base de datos
   *     adonis make:model nombre
+  * 
+  * Para crear un controlador
+  * 
+  *     adonis make:controller nombre 
+  *     // seleccionar para peticiones HTTP
   */

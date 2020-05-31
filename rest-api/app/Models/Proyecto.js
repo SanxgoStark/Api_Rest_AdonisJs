@@ -8,7 +8,7 @@ class Proyecto extends Model {
 
     // Con esto estamos diciendo que cada proyecto pertenece a un usuario
     user (){
-        return this.belongsTo('App/Model/user')
+        return this.belongsTo('App/Model/User')
     }
 
 }

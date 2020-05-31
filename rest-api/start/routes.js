@@ -29,4 +29,8 @@ Route.group(() => {
   // ruta para login POST por que se esta enviando informacion
   Route.post('usuarios/login', 'UserController.login');
 
+  // Ruta para index de los proyectos (get recibiendo del servidor)
+  Route.get('proyectos', 'ProyectoController.index');
+
+
 }).prefix('api/v1/');
