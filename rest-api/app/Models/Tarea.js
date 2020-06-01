@@ -7,7 +7,7 @@ class Tarea extends Model {
 
     // Una tarea pertenece a un proyecto
     proyecto (){
-        return this.belongsTo('App/Model/Proyecto') // ligue de tareas con proyectos
+        return this.belongsTo('App/Models/Proyecto') // ligue de tareas con proyectos
     }
 }
 

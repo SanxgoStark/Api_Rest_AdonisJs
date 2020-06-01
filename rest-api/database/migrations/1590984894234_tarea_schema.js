@@ -22,6 +22,9 @@ class TareaSchema extends Schema {
        */
       table.string('descripcion',255).notNullable()
 
+      // Cuando creamos una tarea no estara completa (falso), (true) cuando se actualiza
+      table.boolean('completada').defaultTo(false)
+
       table.timestamps()
     })
   }

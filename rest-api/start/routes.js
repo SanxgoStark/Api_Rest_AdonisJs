@@ -48,5 +48,11 @@ Route.group(() => {
   // Ruta para consultar tareas de un proyecto
   Route.get('proyectos/:id/tareas', 'TareaController.index').middleware('auth');
 
+   // Ruta para actualizar tareas
+   Route.patch('tareas/:id', 'TareaController.update').middleware('auth');
+
+   // Ruta para eliminar tareas
+   Route.delete('tareas/:id', 'TareaController.destroy').middleware('auth');
+
 
 }).prefix('api/v1/');
