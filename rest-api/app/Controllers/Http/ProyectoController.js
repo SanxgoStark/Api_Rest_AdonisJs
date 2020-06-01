@@ -25,7 +25,7 @@ class ProyectoController {
     
     }
 
-    // Metodo create
+    // Metodo create (Creacion de proyectos)
 
     /**
      * request por que se enviaran datos al servidor
@@ -56,13 +56,50 @@ class ProyectoController {
          * proyectos() metodo que utlizamos para unir los proyectos
          * con los usuarios
          */
-        
+
         await user.proyectos().save(proyecto);
 
         // retorno para que el usuario pueda verlo
         return proyecto;
 
     }
+
+    // Metodo para eliminacion de proyectos
+
+    /**
+     * params para solicitar parametros 
+     */
+
+    async destroy({auth,response,params}){
+
+        // Necesitamos que solo el usuario dueño de su proyecto pueda eliminarlos
+        const user = auth.getUser(); // nos devuelve el usuario
+
+        // id que se tomara de los parametros
+        const id = params.id; // = cosnt {id} = params
+
+        // Para encontrar el proyecto que vamos a eliminar
+
+        /**
+         * find() metodo de adonis para encontrar un proyecto por id
+         */
+
+        const proyecto = await Proyecto.find(id);
+
+        // validar que el proyecto de un usuario pertenece a el (!== diferente de)
+        if(proyecto.user_id !== user.id){
+            return response.status(403).json({ // Respuesta estatus 403 (prohibido)
+                mensaje: "Usted no tiene permitido eliminar este proyecto por que no es propietario de el"
+            }) 
+        }
+
+        // solo el usuario que sea dueño del proyecto lo puede eliminar
+        await proyecto.delete(); // esto ya elimina el proyecto
+
+        return proyecto; // respuesta de proyecto eliminado
+    }
 }
 
 module.exports = ProyectoController
+
+// adonis serve --dev para que el servidor tome los cambios 

@@ -36,5 +36,8 @@ Route.group(() => {
   // Ruta para creacion de proyectos (POST por que se estan enviando datos)
   Route.post('proyectos', 'ProyectoController.create').middleware('auth');
 
+  // Ruta para eliminar proyecto /:id del proyecto
+  Route.delete('proyectos/:id','ProyectoController.destroy').middleware('auth');
+
 
 }).prefix('api/v1/');
