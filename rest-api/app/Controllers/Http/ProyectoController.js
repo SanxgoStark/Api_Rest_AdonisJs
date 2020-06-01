@@ -3,6 +3,9 @@
 // importacion del modelo proyecto
 const Proyecto = use('App/Models/Proyecto');
 
+// importacion de servicio autorizacion
+const AutorizacionService = use('App/Services/AutorizacionService');
+
 class ProyectoController {
 
     // metodo index para recibir todos los registros de la base de datos (los proyectos que pertenescan a dicho usuario)
@@ -70,7 +73,7 @@ class ProyectoController {
      * params para solicitar parametros 
      */
 
-    async destroy({auth,response,params}){
+    async destroy({auth,params}){
 
         // Necesitamos que solo el usuario dueño de su proyecto pueda eliminarlos
         const user = auth.getUser(); // nos devuelve el usuario
@@ -86,12 +89,13 @@ class ProyectoController {
 
         const proyecto = await Proyecto.find(id);
 
-        // validar que el proyecto de un usuario pertenece a el (!== diferente de)
-        if(proyecto.user_id !== user.id){
-            return response.status(403).json({ // Respuesta estatus 403 (prohibido)
-                mensaje: "Usted no tiene permitido eliminar este proyecto por que no es propietario de el"
-            }) 
-        }
+        // Servicio para autorizacion de usuario, verifica permiso haciendo uso de la funcion
+        
+        /**
+         * Arroja error si el usuario no esta logeado correctamente
+         */
+
+        AutorizacionService.verificarPermiso(proyecto,user);
 
         // solo el usuario que sea dueño del proyecto lo puede eliminar
         await proyecto.delete(); // esto ya elimina el proyecto
