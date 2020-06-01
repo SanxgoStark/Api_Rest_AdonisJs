@@ -29,8 +29,12 @@ Route.group(() => {
   // ruta para login POST por que se esta enviando informacion
   Route.post('usuarios/login', 'UserController.login');
 
-  // Ruta para index de los proyectos (get recibiendo del servidor)
-  Route.get('proyectos', 'ProyectoController.index');
+  // Ruta para index de los proyectos (get recibiendo del servidor) - (ver todos los proyectos de un usuario)
+  Route.get('proyectos', 'ProyectoController.index').middleware('auth');
+  // Ruta protegida por el metodo de autentificacion auth
+
+  // Ruta para creacion de proyectos (POST por que se estan enviando datos)
+  Route.post('proyectos', 'ProyectoController.create').middleware('auth');
 
 
 }).prefix('api/v1/');
