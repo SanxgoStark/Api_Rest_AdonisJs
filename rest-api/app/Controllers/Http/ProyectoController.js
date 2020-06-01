@@ -125,3 +125,5 @@ class ProyectoController {
 module.exports = ProyectoController
 
 // adonis serve --dev para que el servidor tome los cambios 
+
+// Para crean un modelo nuevo y nos cree la migracion: adonis make:model nombre -m
