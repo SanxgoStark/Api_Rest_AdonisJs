@@ -102,6 +102,24 @@ class ProyectoController {
 
         return proyecto; // respuesta de proyecto eliminado
     }
+
+    // Metodo para actualizacion de proyectos
+
+    async update({auth,params,request}){
+        // Usuario
+        const user = await auth.getUser();
+        // id que se toma de los parametros
+        const {id} = params;
+        // Proyecto
+        const proyecto = await Proyecto.find(id);
+        // Autorizacion
+        AutorizacionService.verificarPermiso(proyecto,user);
+        // metodo merch que toma el titulo
+        proyecto.merge(request.only('nombre')); // de todo lo que se envia solo se toma el nombre
+        //await por que es un metodo asincrono y tenemos que esperar la respuesta
+        await proyecto.save(); // guarda en base de datos
+        return proyecto; // una ves que tenemos el proyecto guardado lo devolvemos
+    }
 }
 
 module.exports = ProyectoController

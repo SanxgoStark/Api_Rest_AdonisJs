@@ -39,5 +39,8 @@ Route.group(() => {
   // Ruta para eliminar proyecto /:id del proyecto
   Route.delete('proyectos/:id','ProyectoController.destroy').middleware('auth');
 
+  // Ruta para actualizar el nombre de un proyecto por medio de su id
+  Route.patch('proyectos/:id','ProyectoController.update').middleware('auth');
+
 
 }).prefix('api/v1/');
