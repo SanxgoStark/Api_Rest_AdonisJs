@@ -42,5 +42,8 @@ Route.group(() => {
   // Ruta para actualizar el nombre de un proyecto por medio de su id
   Route.patch('proyectos/:id','ProyectoController.update').middleware('auth');
 
+  // Ruta para crear una tarea
+  Route.post('proyectos/:id/tareas', 'TareaController.create').middleware('auth');
+
 
 }).prefix('api/v1/');

@@ -13,8 +13,3 @@ class Tarea extends Model {
 
 module.exports = Tarea
 
-/**
- * Cuando se activa la migracion automaticamente se crea la tabla de
- * dicha migracion en la base de datos, en este caso se creo la tabla
- * Tarea
- */
