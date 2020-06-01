@@ -45,5 +45,8 @@ Route.group(() => {
   // Ruta para crear una tarea
   Route.post('proyectos/:id/tareas', 'TareaController.create').middleware('auth');
 
+  // Ruta para consultar tareas de un proyecto
+  Route.get('proyectos/:id/tareas', 'TareaController.index').middleware('auth');
+
 
 }).prefix('api/v1/');

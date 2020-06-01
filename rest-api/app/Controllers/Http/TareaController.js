@@ -11,6 +11,21 @@ const AutorizacionService = use('App/Services/AutorizacionService');
 
 class TareaController {
 
+    // Metodo index para ver o culsultar todas las tareas de un proyecto especifico
+    async index({auth,request,params}){
+        // Usuario
+        const user = await auth.getUser();
+        // id de los parametros
+        const {id} = params;
+        // Proyecto
+        const proyecto = await Proyecto.find(id);
+        // Confirmacion
+        AutorizacionService.verificarPermiso(proyecto,user);
+        // retornar todas las tareas que pertnescan a un proyecto
+        return await proyecto.tareas().fetch(); // tomamos todas las tareas que pertenescan al proyecto
+
+    }
+
     // Metodo create 
     /**
      * request para recuperar informacion enviada 
